@@ -3,6 +3,6 @@ streamlit
 matplotlib
 numpy
 seaborn
-kmr_dataset
 koreanize_matplotlib
 sklearn
+kmr_dataset
