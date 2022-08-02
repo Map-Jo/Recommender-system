@@ -7,7 +7,6 @@ import koreanize_matplotlib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-
 st.title('Hello!')
 st.header('May I recommend you a Movie?')
 
