@@ -3,12 +3,13 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from kmr_dataset import load_rates
-from kmr_dataset import get_paths
 import koreanize_matplotlib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from kmr_dataset import load_rates
+from kmr_dataset import get_paths
 from kmr_dataset import load_histories
+
 
 st.title('Hello!')
 st.header('May I recommend you a Movie?')
