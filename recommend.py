@@ -3,34 +3,24 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from kmr_dataset import load_rates
-from kmr_dataset import get_paths
 import koreanize_matplotlib
-from kmr_dataset import load_histories
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
 st.title('Hello!')
 st.header('May I recommend you a Movie?')
-paths = get_paths(size='small')
-
-rates, timestamps = load_rates(size='small')
 
 
-histories = load_histories(size='small')
-
-path = get_paths(size='small')[3]
-
-movie_df = pd.read_table(path)
+movie_df = pd.read_table('movies.txt')
 movie = movie_df[['movie', 'title', 'title_eng']]
 
-genres_df = pd.read_csv(paths[2])
+genres_df = pd.read_csv('genres.csv')
 genres_df = genres_df.groupby("movie").agg({"genre" : lambda x : '/'.join(x)})
 movie_genre_df = movie.merge(genres_df, on='movie', how='left')
 movie_genre_df = movie_genre_df.dropna()
 
-rates_df = pd.read_csv(paths[5])
+rates_df = pd.read_csv('rates.csv')
 
 df = movie_df[movie_df['title_eng'].notnull()].copy()
 
