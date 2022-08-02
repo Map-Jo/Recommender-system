@@ -1,4 +1,7 @@
 pandas
+matplotlib.pyplot
 numpy
-matplotlib
-kmr_datset
+seaborn
+kmr_dataset
+kmr_dataset
+koreanize_matplotlib
