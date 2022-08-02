@@ -12,7 +12,7 @@ st.title('Hello!')
 st.header('Are you looking for this movie?')
 
 image = Image.open('movie_night.jpg')
-st.image(image, caption='Movie')
+st.image(image)
 
 movie_df = pd.read_table('movies.txt')
 movie = movie_df[['movie', 'title', 'title_eng']]
