@@ -1,7 +1,8 @@
-pandas as pd
-matplotlib.pyplot as plt
-numpy as np
-seaborn as sns
+streamlit
+pandas
+matplotlib.pyplot
+numpy
+seaborn
 kmr_dataset
 koreanize_matplotlib
 sklearn
