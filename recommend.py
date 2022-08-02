@@ -21,10 +21,10 @@ movie_genre_df = movie_genre_df.dropna()
 
 rates_df = pd.read_csv('rates.csv')
 
-df = movie_df[movie_df['title_eng'].notnull()].copy()
+df = movie_df[movie_df['title'].notnull()].copy()
 
 tfidfvect = TfidfVectorizer()
-tfidf_title = tfidfvect.fit_transform(df['title_eng'])
+tfidf_title = tfidfvect.fit_transform(df['title'])
 tfidfvect.get_feature_names_out()
 df_tfidf = pd.DataFrame(tfidf_title.toarray(), columns=tfidfvect.get_feature_names_out())
 
@@ -32,14 +32,13 @@ cosine_matrix = cosine_similarity(tfidf_title, tfidf_title)
 
 def find_movie(title, sim_matrix, df):
     try:
-        movie_id = df.loc[df["title_eng"].notnull() & 
-                          df["title_eng"].str.contains(title), "title"].index[0]
+        movie_id = df.loc[df["title"].notnull() & 
+                          df["title"].str.contains(title), "title"].index[0]
         df_sim = pd.DataFrame(sim_matrix, index=df.index, columns=df.index)
-        sim = df_sim[movie_id].nlargest(10)
+        sim = df_sim[movie_id].nlargest(5)
         df_sim = df.loc[sim.index, ['movie','title', 'title_eng']].join(sim)
         return df_sim
     except:
         return "추천할 영화 없음"
 title = st.text_input('Movie title')
 st.write('The Recommend movie title is', find_movie(title, cosine_matrix, df))
-# find_movie(title, cosine_matrix, df)
