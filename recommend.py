@@ -10,6 +10,8 @@ from kmr_dataset import load_histories
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+st.title('Movie Recommend')
 paths = get_paths(size='small')
 
 rates, timestamps = load_rates(size='small')
