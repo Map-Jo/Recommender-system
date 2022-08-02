@@ -8,7 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 st.title('Hello!')
-st.header('May I recommend you a Movie?')
+st.header('Are you looking for this movie?')
 
 
 movie_df = pd.read_table('movies.txt')
