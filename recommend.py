@@ -39,6 +39,7 @@ def find_movie(title, sim_matrix, df):
                           df["title"].str.contains(title), "title"].index[0]
         df_sim = pd.DataFrame(sim_matrix, index=df.index, columns=df.index)
         sim = df_sim[movie_id].nlargest(5)
+
         df_sim = df.loc[sim.index, ['movie','title', 'title_eng']].join(sim)
         return df_sim
     except:
