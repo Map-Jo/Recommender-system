@@ -6,10 +6,13 @@ import seaborn as sns
 import koreanize_matplotlib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from PIL import Image
 
 st.title('Hello!')
 st.header('Are you looking for this movie?')
 
+image = Image.open('movie_night.jpg')
+st.image(image, caption='Movie')
 
 movie_df = pd.read_table('movies.txt')
 movie = movie_df[['movie', 'title', 'title_eng']]
