@@ -11,7 +11,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 
-st.title('Movie Recommend')
+st.title('Hello!')
+st.header('May I recommend you a Movie?')
 paths = get_paths(size='small')
 
 rates, timestamps = load_rates(size='small')
@@ -31,11 +32,7 @@ movie_genre_df = movie_genre_df.dropna()
 
 rates_df = pd.read_csv(paths[5])
 
-rating_movies = rates_df.merge(movie_genre_df)
-rating_movies = rating_movies[['user', 'movie', 'rate', 'title_eng', 'genre']]
-
-ratings_matrix = rate_sam.pivot_table(values='rate', index='user', columns='title_eng')
-ratings_matrix = ratings_matrix.fillna(0)
+df = movie_df[movie_df['title_eng'].notnull()].copy()
 
 tfidfvect = TfidfVectorizer()
 tfidf_title = tfidfvect.fit_transform(df['title_eng'])
@@ -54,5 +51,6 @@ def find_movie(title, sim_matrix, df):
         return df_sim
     except:
         return "추천할 영화 없음"
-title = "Back"
-find_movie(title, cosine_matrix, df)
+title = st.text_input('Movie title')
+st.write('The Recommend movie title is', find_movie(title, cosine_matrix, df))
+# find_movie(title, cosine_matrix, df)
