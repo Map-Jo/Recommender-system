@@ -4,4 +4,3 @@ numpy
 seaborn
 koreanize_matplotlib
 sklearn
-PIL
