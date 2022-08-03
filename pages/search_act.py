@@ -14,9 +14,13 @@ st.image(image)
 
 movies_df = pd.read_table('data/movies.txt')
 catings_df = pd.read_csv('data/castings.csv')
+peoples_df = pd.read_table('data/peoples.txt')
+rates_df = pd.read_csv('data/rates.csv')
 
+rates_df
 
-
-
-
+act = catings_df.merge(peoples_df, on='people', how='left')
+act = act[['movie', 'korean', 'leading']]
+act = movies_df.merge(act, on='movie', how='left')
+act
 title = st.text_input('Actor or Actress Name')
