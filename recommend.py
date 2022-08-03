@@ -14,15 +14,15 @@ st.header('Are you looking for this movie?')
 image = Image.open('movie_night.jpg')
 st.image(image)
 
-movie_df = pd.read_table('movies.txt')
+movie_df = pd.read_table('data/movies.txt')
 movie = movie_df[['movie', 'title', 'title_eng']]
 
-genres_df = pd.read_csv('genres.csv')
+genres_df = pd.read_csv('data/genres.csv')
 genres_df = genres_df.groupby("movie").agg({"genre" : lambda x : '/'.join(x)})
 movie_genre_df = movie.merge(genres_df, on='movie', how='left')
 movie_genre_df = movie_genre_df.dropna()
 
-rates_df = pd.read_csv('rates.csv')
+rates_df = pd.read_csv('data/rates.csv')
 
 df = movie_df[movie_df['title'].notnull()].copy()
 
