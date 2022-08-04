@@ -15,7 +15,7 @@ st.image(image)
 movies_df = pd.read_table('data/movies.txt')
 castings_df = pd.read_csv('data/castings.csv')
 peoples_df = pd.read_table('data/peoples.txt')
-rates_df = pd.read_csv('data/rates.csv')
+rates_df = pd.read_csv('data/rates-5m.csv')
 
 rate_mean = rates_df.groupby('movie')['rate'].agg('mean')
 rate_mean = pd.DataFrame(rate_mean).reset_index()
