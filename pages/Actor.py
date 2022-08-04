@@ -13,16 +13,16 @@ image = Image.open('actor.jpg')
 st.image(image)
 
 movies_df = pd.read_table('data/movies.txt')
-castings_df = pd.read_csv('data/castings.csv')
+catings_df = pd.read_csv('data/castings.csv')
 peoples_df = pd.read_table('data/peoples.txt')
-rates_df = pd.read_csv('data/rates-5m.csv')
+rates_df = pd.read_csv('data/rates.csv')
 
 rate_mean = rates_df.groupby('movie')['rate'].agg('mean')
 rate_mean = pd.DataFrame(rate_mean).reset_index()
 rate_mean = rate_mean.rename(columns={'movie':'movie',
                                     'rate':'평점'})
 
-act = castings_df.merge(peoples_df, on='people', how='left')
+act = catings_df.merge(peoples_df, on='people', how='left')
 act = act[['movie', 'korean', 'leading']]
 act = movies_df.merge(act, on='movie', how='left')
 act = act.merge(rate_mean, on='movie', how='left')
@@ -47,7 +47,7 @@ def find_movie(name, sim_matrix, df):
         df_sim = act.loc[sim.index, ['title', 'korean', '평점','grade']].join(sim)
         return df_sim
     except:
-        return "찾으시는 영화배우가 출연한 영화 검색 결과가 없습니다."
+        return "찾으시는 영화배우의 영화 검색 결과가 없습니다."
 
 name = st.text_input('Actor or Actress name')
-st.write(find_movie(name, cosine_matrix, act))
+st.write('The Recommend movie title is', find_movie(name, cosine_matrix, act))
