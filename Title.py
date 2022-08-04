@@ -16,12 +16,6 @@ st.image(image)
 movie_df = pd.read_table('data/movies.txt')
 movie = movie_df[['movie', 'title', 'title_eng']]
 
-genres_df = pd.read_csv('data/genres.csv')
-genres_df = genres_df.groupby("movie").agg({"genre" : lambda x : '/'.join(x)})
-movie_genre_df = movie.merge(genres_df, on='movie', how='left')
-movie_genre_df = movie_genre_df.dropna()
-
-rates_df = pd.read_csv('data/rates.csv')
 
 df = movie_df[movie_df['title'].notnull()].copy()
 
@@ -42,6 +36,6 @@ def find_movie(title, sim_matrix, df):
         df_sim = df.loc[sim.index, ['movie','title', 'title_eng']].join(sim)
         return df_sim
     except:
-        return "추천할 영화 없음"
+        return "검색하신 단어와 연관된 영화 검색 결과가 없습니다."
 title = st.text_input('Movie title')
 st.write('The Recommend movie title is', find_movie(title, cosine_matrix, df))
