@@ -14,8 +14,6 @@ image = Image.open('movie_night.jpg')
 st.image(image)
 
 movie_df = pd.read_table('data/movies.txt')
-movie = movie_df[['movie', 'title', 'title_eng']]
-
 
 df = movie_df[movie_df['title'].notnull()].copy()
 
