@@ -17,7 +17,7 @@ castings_df = pd.read_csv('data/castings.csv')
 peoples_df = pd.read_table('data/peoples.txt')
 rates_df = pd.read_csv('data/rates-5m.csv')
 
-rate_mean = rates_df.groupby('movie')['rate'].mean()
+rate_mean = rates_df.groupby(['movie'])['rate'].aggregate('mean')
 # rate_mean = pd.DataFrame(rate_mean).reset_index()
 # rate_mean = rate_mean.rename(columns={'movie':'movie',
 #                                     'rate':'평점'})
