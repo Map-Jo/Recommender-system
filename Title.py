@@ -13,7 +13,7 @@ st.header('Are you looking for this movie?')
 image = Image.open('movie_night.jpg')
 st.image(image)
 
-movie_df = pd.read_table('data/movies.txt')
+movie_df = pd.read_parquet('data/moives.parquet.gzip')
 
 df = movie_df[movie_df['title'].notnull()].copy()
 
