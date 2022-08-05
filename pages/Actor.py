@@ -29,7 +29,7 @@ act = act.merge(rate_mean, on='movie', how='left')
 
 act = act[['title', 'korean', '평점','grade']]
 act = act[(act['korean'].notnull()) & act['평점'].notnull()]
-act = act.sample(15000, random_state=42).copy()
+act = act.sample(20000, random_state=42).copy()
 
 tfidfvect = TfidfVectorizer()
 tfidf_name = tfidfvect.fit_transform(act['korean'])
