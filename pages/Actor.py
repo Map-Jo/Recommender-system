@@ -29,6 +29,7 @@ act = act.merge(rate_mean, on='movie', how='left')
 
 act = act[['title', 'korean', '평점','grade']]
 act = act[(act['korean'].notnull()) & act['평점'].notnull()]
+act = act.sample(10000, random_state=42).copy()
 
 tfidfvect = TfidfVectorizer()
 tfidf_name = tfidfvect.fit_transform(act['korean'])
@@ -42,7 +43,7 @@ def find_movie(name, sim_matrix, df):
         actor_name = act.loc[act["korean"].notnull() & 
                           act["korean"].str.contains(name), "korean"].index[0]
         df_sim = pd.DataFrame(sim_matrix, index=df.index, columns=df.index)
-        sim = df_sim[actor_name].nlargest(10)
+        sim = df_sim[actor_name].nlargest(5)
 
         df_sim = act.loc[sim.index, ['title', 'korean', '평점','grade']].join(sim)
         return df_sim
