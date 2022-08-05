@@ -15,7 +15,7 @@ st.image(image)
 
 movie_df = pd.read_parquet('data/moives.parquet.gzip')
 
-df = movie_df.sample(20000, random_state=42).copy()
+df = movie_df.sample(18000, random_state=42).copy()
 tfidfvect = TfidfVectorizer()
 tfidf_title = tfidfvect.fit_transform(df['title'])
 tfidfvect.get_feature_names_out()
